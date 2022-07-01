@@ -9,8 +9,8 @@ def clear():
 # print hangman
 def print_hangman(values):
     print()
-    print("\t   ÷--------+")
-    print("\t   |        |")
+    print("\t   ÷-------+")
+    print("\t   |       |")
     print("\t   {}       |".format(values[0]))
     print("\t  {}{}{}      |".format(values[1], values[2], values[3]))
     print("\t   {}       |".format(values[4]))
@@ -24,8 +24,8 @@ def print_hangman(values):
 def print_hangman_win():
     print()
     print("\t   ÷-------÷")
-    print("\t            |")
-    print("\t            |")
+    print("\t           |")
+    print("\t           |")
     print("\t           |")
     print("\t   O       |")
     print("\t  /|\\      |")
@@ -48,7 +48,7 @@ def print_word(values):
 
 def check_win(values):
     for char in values:
-        if char == "_ ":
+        if char == "_":
             return False
     return True
 
@@ -70,7 +70,7 @@ def hangman_game(word):
     chances = 0
 
     # hangman's body values
-    hangman_values = ['O', '--', '|', '--', '|', '/', '\\']
+    hangman_values = ['O', '/', '|', '\\', '|', '/', '\\']
 
     # hangman values before chosen
     show_hangman_values = [' ', ' ', ' ', ' ', ' ', ' ', ' ']
@@ -78,11 +78,12 @@ def hangman_game(word):
     # loop to create display of word
     for char in word:
         if char.isalpha():
-            word_display.append('- ')
+            word_display.append('_')
+            correct_letters.append(char.upper())
         # add a if char.isspace()
             # word_display.append('  ')
         else:
-            word_display.append(char + ' ')
+            word_display.append(char)
 
     # functions for each game
     while True:
@@ -140,7 +141,7 @@ def hangman_game(word):
 
             if check_win(word_display):
                 clear()
-                print("\tCongratulations! ")
+                print("\tCONGRATULATION!!! YOU'RE NOT DEAD YET!")
                 print_hangman_win()
                 print("the word is : ", word.upper())
                 break
@@ -163,12 +164,12 @@ if __name__ == "__main__":
         # game menu
         print()
         print("-------------------------------")
-        print("\t\tGAME MENU")
+        print("\tGAME MENU")
         print("-------------------------------")
         print()
         for key in topics:
             print("PRESS ", key, " to select", topics[key])
-        print("PRESS",  len(topics)+1, " to quit")
+        print("PRESS ",  len(topics)+1, " to quit")
         print()
 
     # dealing with player category choice
