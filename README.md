@@ -1,8 +1,6 @@
 # hangman
-<<<<<<< HEAD
+
 just trying this stuff out
-still working on stuff
--
 
 -topic:
 	-animals https://gist.github.com/EyeOfMidas/311e77b8b8c2f334fc8bdaf652c1f47f
@@ -23,26 +21,15 @@ interaction:
 if you pick a letter incorrectly, you get 6 wrong attempts until you get all the way strung up."
 
 choose a topic
-- [ ] make dictionary
+- [x] make dictionary
 - [ ] (import cvs?)
-- [ ] 
-
-show gallows
-- [ ] make frame
-
-shows blanks with spaces between
+- [x] option for all words in dict.
+- [x] api for ton of words choice
+- [x] spaces in between 
 
 "And GO!"
 - [ ] timer starts [add a countdown timer](https://www.geeksforgeeks.org/how-to-create-a-countdown-timer-using-python/)
-
-fills blanks as it goes with uppercase
-but has an already used letter list below
-
-show hanging dude
-    0
--- | --
-     |
-   /   \
+  ? scratch timer ?
 
 if win:
 show the walk away dude [animate?](https://codereview.stackexchange.com/questions/21462/python-terminal-animation)
@@ -63,12 +50,6 @@ restarts game at choose a topic
 
 if N:
 show gravestone and fin
-
-
-
-
-
-
 
 
 

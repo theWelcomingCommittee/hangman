@@ -1,5 +1,16 @@
 import random
 import os
+import requests
+import itertools
+
+
+# URL='https://random-word-api.herokuapp.com/word?number='
+
+# def get_words(num):
+# response=requests.get(URL+str(num)).text
+# return json.loads(response.text)
+
+# code begins here
 
 
 def clear():
@@ -38,9 +49,9 @@ def print_hangman_win():
 # print word to be guessed
 def print_word(values):
     print()
-    print("\t", end='')
+    print("\t", end=' ')
     for x in values:
-        print(x, end='')
+        print(x, end=' ')
     print()
 
 # check for win
@@ -103,7 +114,7 @@ def hangman_game(word):
             print('not a choice... try again')
             continue
 
-    # check if aplpha (can we combine with above with an OR?)
+    # check if alpha (can we combine with above with an OR?)
         if not inp[0].isalpha():
             clear()
             print('not a choice... try again')
@@ -112,7 +123,7 @@ def hangman_game(word):
         # if tried before
         if inp.upper() in incorrect_letters:
             clear()
-            print('you already done picked that! try again')
+            print('you already done picked that! try again!')
             continue
 
          # incorrect input
@@ -137,7 +148,7 @@ def hangman_game(word):
             # update word display
             for i in range(len(word)):
                 if word[i].upper() == inp.upper():
-                    word_display[i] = inp.upper()
+                    word_display[i] = inp.upper()+" "
 
             if check_win(word_display):
                 clear()
@@ -152,7 +163,8 @@ if __name__ == "__main__":
     clear()
 
     # categories
-    topics = {1: "animals", 2: "outerspace", 3: "sports"}
+    topics = {1: "animals", 2: "outerspace", 3: "sports",
+              4: "any of these topics", 5: "literally any english word"}
 
     #words in categories
     dataset = {"animals": ['tiger', 'gorilla', 'racoon', 'snake', 'kangaroo'], "outerspace": [
@@ -167,6 +179,7 @@ if __name__ == "__main__":
         print("\tGAME MENU")
         print("-------------------------------")
         print()
+        print("choose a topic:")
         for key in topics:
             print("PRESS ", key, " to select", topics[key])
         print("PRESS ",  len(topics)+1, " to quit")
@@ -185,9 +198,22 @@ if __name__ == "__main__":
             print("not even close to one of the choices... Try again")
             continue
 
-        # elif to pick "wild card" random of all the topics!!!!!!
+        # elif to pick "wild card" random of all the topics!!
+        elif choice == 4:
+            res_list = []
+            for key, value in (itertools.chain.from_iterable([itertools.product((k, ), v) for k, v in dataset.items()])):
+                res_list.append(value)
+            '''for key in dataset:
+                for item in dataset[value]:
+                    all_word_list.append(item)'''
+            ran = random.choice(res_list)
+            hangman_game(ran)
 
-        # elif to pick "ultra wild card" from online api!!!!!!!!
+        # "ultra wild card" from online api!
+        elif choice == 5:
+            ran = requests.get(
+                "https://random-word-api.herokuapp.com/word").text
+            hangman_game(ran)
 
         # exit choice
         elif choice == len(topics)+1:
