@@ -3,13 +3,6 @@ import os
 import requests
 import itertools
 
-
-# URL='https://random-word-api.herokuapp.com/word?number='
-
-# def get_words(num):
-# response=requests.get(URL+str(num)).text
-# return json.loads(response.text)
-
 # code begins here
 
 
