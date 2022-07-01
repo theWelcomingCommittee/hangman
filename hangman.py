@@ -20,8 +20,8 @@ def print_hangman(values):
     print("\t   {}       |".format(values[4]))
     print("\t  {} {}      |".format(values[5], values[6]))
     print("\t           |")
-    print("    _______________|____")
-    print("   ``'```''`````'````''``")
+    print("    ______________/|\\___")
+    print("  ````'```''`````'``'`''``'``")
     print()
 
 
@@ -34,8 +34,8 @@ def print_hangman_win():
     print("\t   O       |")
     print("\t  /|\\      |")
     print("\t   |       |")
-    print("    ______/_\\______|____")
-    print("   ``'```''`````'````''``")
+    print("    ______/_\\_____/|\\___")
+    print("  ````'```''`````'``'`''``'``")
     print()
 
 
@@ -55,6 +55,8 @@ def check_win(values):
         if char == "_":
             return False
     return True
+
+# the game
 
 
 def hangman_game(word):
@@ -130,10 +132,9 @@ def hangman_game(word):
             if chances == len(hangman_values):
                 print()
                 clear()
-                # print hung dude with dropped arms... maybe animation fall
-                print("\tYOU GOT HUNG!!! GAME OVER!")
                 print_hangman(hangman_values)
-                print("The word that your dead ass got wrong was : ", word.upper())
+                print("   YOU GOT HUNG!!! GAME OVER!")
+                print("The word that your dead ass got wrong was:", word.upper())
                 break
 
         # correct input
@@ -145,9 +146,9 @@ def hangman_game(word):
 
             if check_win(word_display):
                 clear()
-                print("\tCONGRATULATION!!! YOU'RE NOT DEAD YET!")
                 print_hangman_win()
-                print("the word is : ", word.upper())
+                print("   CONGRATULATIONS!!! YOU'RE NOT DEAD YET!")
+                print("       the word is:", word.upper())
                 break
         clear()
 
@@ -157,7 +158,7 @@ if __name__ == "__main__":
 
     # categories
     topics = {1: "animals", 2: "outerspace", 3: "sports",
-              4: "any of these topics", 5: "literally any english word"}
+              4: "any word from these topics", 5: "literally any english word"}
 
     #words in categories
     dataset = {"animals": ['tiger', 'gorilla', 'racoon', 'snake', 'kangaroo'], "outerspace": [
@@ -168,9 +169,9 @@ if __name__ == "__main__":
 
         # game menu
         print()
-        print("-------------------------------")
+        print("-----------------------------")
         print("\tGAME MENU")
-        print("-------------------------------")
+        print("-----------------------------")
         print()
         print("choose a topic:")
         for key in topics:
@@ -178,14 +179,14 @@ if __name__ == "__main__":
         print("PRESS ",  len(topics)+1, " to quit")
         print()
 
-    # dealing with player category choice
+        # dealing with player category choice
         try:
             choice = int(input("Enter your choice = "))
         except ValueError:
             clear()
             print("not a choice... Try Again")
             continue
-    # sanity checks for input
+        # checking the input
         if choice > len(topics)+1:
             clear()
             print("not even close to one of the choices... Try again")
@@ -196,22 +197,23 @@ if __name__ == "__main__":
             res_list = []
             for key, value in (itertools.chain.from_iterable([itertools.product((k, ), v) for k, v in dataset.items()])):
                 res_list.append(value)
-            '''for key in dataset:
-                for item in dataset[value]:
-                    all_word_list.append(item)'''
             ran = random.choice(res_list)
             hangman_game(ran)
+            continue
 
         # "ultra wild card" from online api!
         elif choice == 5:
-            ran = requests.get(
+            res = requests.get(
                 "https://random-word-api.herokuapp.com/word").text
+            ran = res.strip('["]')
             hangman_game(ran)
+            continue
 
         # exit choice
         elif choice == len(topics)+1:
             print()
-            print("Thanks for playin'!")
+            print("---------------------")
+            print(" Thanks for playin'!")
             break
 
         # chosen topic

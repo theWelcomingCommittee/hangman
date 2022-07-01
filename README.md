@@ -55,6 +55,9 @@ restarts game at choose a topic
 if N:
 show gravestone and fin
 
+must have internet access for api
+and probably modules as well
+
 
 just learning
 
