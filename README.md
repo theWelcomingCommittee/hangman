@@ -1,6 +1,10 @@
 # hangman
 
-just trying this stuff out
+<<<<<<< HEAD
+
+game to learn some stuff... here's the attempt and plans
+
+d70f9f1a74f48085c1334fbb1363a02a89e36e40
 
 -topic:
 	-animals https://gist.github.com/EyeOfMidas/311e77b8b8c2f334fc8bdaf652c1f47f
@@ -52,7 +56,6 @@ if N:
 show gravestone and fin
 
 
+just learning
 
-=======
-just learning this shit
->>>>>>> c94c8b59847358ec8e37a855f6214589802f9f47
+c94c8b59847358ec8e37a855f6214589802f9f47
