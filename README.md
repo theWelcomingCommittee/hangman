@@ -1,8 +1,7 @@
 # hangman
-<<<<<<< HEAD
-just trying this stuff out
-still working on stuff
--
+
+game to learn some stuff... here's the attempt and plans
+
 
 -topic:
 	-animals https://gist.github.com/EyeOfMidas/311e77b8b8c2f334fc8bdaf652c1f47f
