@@ -134,7 +134,7 @@ def hangman_game(word):
                 clear()
                 print_hangman(hangman_values)
                 print("   YOU GOT HUNG!!! GAME OVER!")
-                print("The word that your dead ass got wrong was:", word.upper())
+                print("the word that your dead ass got wrong was:", word.upper())
                 break
 
         # correct input
@@ -148,7 +148,7 @@ def hangman_game(word):
                 clear()
                 print_hangman_win()
                 print("   CONGRATULATIONS!!! YOU'RE NOT DEAD YET!")
-                print("       the word is:", word.upper())
+                print("       the word was:", word.upper())
                 break
         clear()
 
@@ -179,35 +179,39 @@ if __name__ == "__main__":
         print("PRESS ",  len(topics)+1, " to quit")
         print()
 
-        # dealing with player category choice
+        ran = ()
+
+        # choosing topics
         try:
             choice = int(input("Enter your choice = "))
+
+        # checking the input
         except ValueError:
             clear()
             print("not a choice... Try Again")
             continue
-        # checking the input
+
         if choice > len(topics)+1:
             clear()
             print("not even close to one of the choices... Try again")
             continue
 
-        # elif to pick "wild card" random of all the topics!!
+        elif choice < 4:
+            chosenTopic = topics[choice]
+            ran = random.choice(dataset[chosenTopic])
+
+        # making list of wild card list of all words from topics
         elif choice == 4:
             res_list = []
             for key, value in (itertools.chain.from_iterable([itertools.product((k, ), v) for k, v in dataset.items()])):
                 res_list.append(value)
             ran = random.choice(res_list)
-            hangman_game(ran)
-            continue
 
-        # "ultra wild card" from online api!
+        # ultra wild card from online api
         elif choice == 5:
             res = requests.get(
                 "https://random-word-api.herokuapp.com/word").text
             ran = res.strip('["]')
-            hangman_game(ran)
-            continue
 
         # exit choice
         elif choice == len(topics)+1:
@@ -216,11 +220,5 @@ if __name__ == "__main__":
             print(" Thanks for playin'!")
             break
 
-        # chosen topic
-        chosenTopic = topics[choice]
-
-        # selecting random word
-        ran = random.choice(dataset[chosenTopic])
-
-        # run rest of game function
+        # run game function
         hangman_game(ran)
