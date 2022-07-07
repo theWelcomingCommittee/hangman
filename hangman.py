@@ -6,14 +6,13 @@ import colorama
 from colorama import Fore, Style
 colorama.init()
 
-# code begins here
-
 
 def clear():
     os.system('clear')
 
+# beginning with print hangman functions
 
-# print hangman
+
 def print_hangman(values):
     print()
     print("\t   ÷-------+")
@@ -45,8 +44,9 @@ def print_hangman_win():
     print(Fore.GREEN + "  ````'```''`````'``'`''``'``" + Style.RESET_ALL)
     print()
 
-
 # print word to be guessed
+
+
 def print_word(values):
     print()
     print("\t", end=' ')
@@ -63,7 +63,7 @@ def check_win(values):
             return False
     return True
 
-# the game
+# the GAME!
 
 
 def hangman_game(word):
@@ -107,7 +107,6 @@ def hangman_game(word):
 
         if len(inp) != 1:
             clear()
-            #print('not a choice... try again')
             print(Fore.LIGHTRED_EX +
                   '  not a choice... try again' + Style.RESET_ALL, end='\r', flush=True)
             continue
@@ -115,7 +114,6 @@ def hangman_game(word):
     # check if alpha (can we combine with above with an OR?)
         if not inp[0].isalpha():
             clear()
-            #print('not a choice... try again')
             print(Fore.LIGHTRED_EX +
                   '  not a choice... try again' + Style.RESET_ALL, end='\r', flush=True)
             continue
@@ -123,7 +121,6 @@ def hangman_game(word):
         # if tried before
         if inp.upper() in incorrect_letters:
             clear()
-            #print('you already done tried that! try again!')
             print(Fore.LIGHTRED_EX + '  you already done tried that! try again!' + Style.RESET_ALL,
                   end='\r', flush=True)
             continue
@@ -167,7 +164,7 @@ def hangman_game(word):
 if __name__ == "__main__":
     clear()
 
-    '''possibly future links to csv or text files'''
+    # possibly future links to csv or text files
     # categories
     topics = {1: "animals", 2: "outerspace", 3: "sports",
               4: "any word from these topics", 5: "literally any english word"}
@@ -203,11 +200,6 @@ if __name__ == "__main__":
             print("not a choice... Try Again")
             continue
 
-        # if choice < 1 or choice > 6:
-            # clear()
-            #print("not even close to one of the choices... Try again")
-            # continue
-
         # making list of wild card list of all words from topics
         if choice == 4:
             res_list = []
@@ -225,7 +217,7 @@ if __name__ == "__main__":
         elif choice == 6:
             print()
             print("---------------------")
-            print(" Thanks for playin'!")
+            print(" Thanks for playin'!!!")
             break
 
         # pick of the topics
